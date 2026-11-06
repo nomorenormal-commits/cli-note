@@ -1,0 +1,35 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "cli-note"
+version = "0.1.0"
+description = "Local Markdown notes with tags, BM25 full-text search, a Textual TUI, and a built-in MCP server"
+readme = "README.md"
+license = { text = "MIT" }
+requires-python = ">=3.10"
+authors = [{ name = "cli-note contributors" }]
+keywords = ["notes", "markdown", "obsidian", "bm25", "mcp", "tui", "cli"]
+classifiers = [
+    "Environment :: Console",
+    "Programming Language :: Python :: 3",
+    "Topic :: Utilities",
+]
+dependencies = [
+    "mcp>=1.2,<2",
+]
+
+[project.optional-dependencies]
+tui = ["textual>=0.86"]
+dev = ["pytest>=8", "textual>=0.86"]
+
+[project.scripts]
+cli-note = "cli_note.cli:main"
+cli-note-mcp = "cli_note.mcp_server:run_from_cli"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
